@@ -71,9 +71,6 @@ NULL
 #' @import vegan
 NULL
 
-#' @import xlsx
-NULL
-
 #' Spatial Polygon Example 
 #'
 #' @name spatPOLY
@@ -335,7 +332,6 @@ zooaRch_GUI<-function() {
       name <- tclvalue(tkgetOpenFile(
         filetypes = "{{.csv} *}"))
       if (name == "") return;
-      ##require(foreign)    # read.csv file I sent you
       data <- read.csv(name)
       pos<-1
       envir <- as.environment(pos)
@@ -767,7 +763,6 @@ dfs.fun<-function()c(unlist(lapply(c(ls(envir = .GlobalEnv),ls("package:zooaRchG
 
 # getshapefile function
 getshapefile <- function() {
-  ##require(raster)
   name <- tclvalue(tkgetOpenFile(
     filetypes = "{{ESRI Shapefiles} {.shp}}"))
   if (name == "") return(data.frame());
@@ -808,7 +803,6 @@ getspssfile <- function() {
   name <- tclvalue(tkgetOpenFile(
     filetypes = "{{SPSS files} {.sav}}"))
   if (name == "") return(data.frame());
-  ##require(foreign)    #
   data <- as.data.frame(read.spss(name, to.data.frame=TRUE))
   file.name <- sub(x = basename(name), pattern = ".sav",replacement = "",ignore.case = TRUE)
   pos<-1
@@ -830,7 +824,6 @@ getcsvfile <- function() {
 
 # death_age_fun
 death_age_fun<-function(){
-  #dfs.fun<-function()c(unlist(lapply(ls(envir = .GlobalEnv), function(dfs) if (class(get(dfs))[1] == "data.frame") c(unlist(dfs)))),"Load User File")
   conf.level<-Fusion.groups<-UpperCI<-LowerCI<-Count<-NULL
   
   #Data Model: environment called "e"
@@ -1049,7 +1042,6 @@ death_age_fun<-function(){
     #Epiphyseal Fusion Function
     if (func == "Epiphyseal Fusion") {
       fuse.func<-function(data=Data,iter=1000,ci=95,plotci=TRUE,plot.title=NULL){
-        ##require(ggplot2)
         cat(paste("Enter number of fusion groups"), "\n")
         ans<-readLines(n = 1)
         ans <- as.numeric(ans)
@@ -1258,7 +1250,7 @@ death_age_fun<-function(){
 
 # srarefun
 s_rarefun<-function(){
-  #dfs.fun<-function()c(unlist(lapply(ls(envir = .GlobalEnv), function(dfs) if (class(get(dfs))[1] == "data.frame") c(unlist(dfs)))),"Load User File")
+  
   
   rarefac.fun <- function(data=e$dataframe, m=e$mval, ci = e$conf.level){
     k <- data[data > 0] #species frequencies
@@ -1485,7 +1477,7 @@ s_rarefun<-function(){
 
 # ksfun
 ksfun<-function(){
-  #dfs.fun<-function()c(unlist(lapply(ls(envir = .GlobalEnv), function(dfs) if (class(get(dfs))[1] == "data.frame") c(unlist(dfs)))),"Load User File")
+  
   
   #Data Model: environment called "e"
   e <- new.env()
@@ -1587,7 +1579,7 @@ ksfun<-function(){
 
 # tfun
 tfun<-function(){
-  #dfs.fun<-function()c(unlist(lapply(ls(envir = .GlobalEnv), function(dfs) if (class(get(dfs))[1] == "data.frame") c(unlist(dfs)))),"Load User File")
+  
   
   #Data Model: environment called "e"
   e <- new.env()
@@ -1738,7 +1730,7 @@ tfun<-function(){
 
 # onesam_tfun
 onesam_tfun<-function(){
-  #dfs.fun<-function()c(unlist(lapply(ls(envir = .GlobalEnv), function(dfs) if (class(get(dfs))[1] == "data.frame") c(unlist(dfs)))),"Load User File")
+  
   
   #Data Model: environment called "e"
   e <- new.env()
@@ -1870,7 +1862,7 @@ onesam_tfun<-function(){
 
 # shapirofun
 shapirofun<-function(){
-  #dfs.fun<-function()c(unlist(lapply(ls(envir = .GlobalEnv), function(dfs) if (class(get(dfs))[1] == "data.frame") c(unlist(dfs)))),"Load User File")
+  
   
   #Data Model: environment called "e"
   e <- new.env()
@@ -1980,7 +1972,7 @@ shapirofun<-function(){
 
 # bartlettsfun
 bartlettsfun<-function(){
-  #dfs.fun<-function()c(unlist(lapply(ls(envir = .GlobalEnv), function(dfs) if (class(get(dfs))[1] == "data.frame") c(unlist(dfs)))),"Load User File")
+  
   
   #Data Model: environment called "e"
   e <- new.env()
@@ -2104,7 +2096,7 @@ bartlettsfun<-function(){
 
 # F_var_fun
 F_var_fun<-function(){
-  #dfs.fun<-function()c(unlist(lapply(ls(envir = .GlobalEnv), function(dfs) if (class(get(dfs))[1] == "data.frame") c(unlist(dfs)))),"Load User File")
+  
   
   #Data Model: environment called "e"
   e <- new.env()
@@ -2262,9 +2254,6 @@ F_var_fun<-function(){
 
 # LevenesVarTestFun
 LevenesVarTestFun<-function(){
-  ##require(car,quietly = TRUE)
-  #dfs.fun<-function()c(unlist(lapply(ls(envir = .GlobalEnv), function(dfs) if (class(get(dfs))[1] == "data.frame") c(unlist(dfs)))),"Load User File")
-  
   #Data Model: environment called "e"
   e <- new.env()
   e$dataname <- tclVar("Choose one"); 
@@ -2405,7 +2394,7 @@ LevenesVarTestFun<-function(){
 
 # summar_fun
 summar_fun<-function(){
-  #dfs.fun<-function()c(unlist(lapply(ls(envir = .GlobalEnv), function(dfs) if (class(get(dfs))[1] == "data.frame") c(unlist(dfs)))),"Load User File")
+  
   skew<-function (x, na.rm = TRUE) {
     if (is.matrix(x)) 
       apply(x, 2, skew, na.rm = na.rm)
@@ -2555,7 +2544,7 @@ summar_fun<-function(){
 
 # Assoc_fun
 Assoc_fun<-function(){
-  #dfs.fun<-function()c(unlist(lapply(ls(envir = .GlobalEnv), function(dfs) if (class(get(dfs))[1] == "data.frame") c(unlist(dfs)))),"Load User File")
+  
   
   #Data Model: environment called "e"
   e <- new.env()
@@ -2790,7 +2779,7 @@ Assoc_fun<-function(){
 
 # Fisher_exact_fun
 Fisher_exact_fun<-function(){
-  #dfs.fun<-function()c(unlist(lapply(ls(envir = .GlobalEnv), function(dfs) if (class(get(dfs))[1] == "data.frame") c(unlist(dfs)))),"Load User File")
+  
   
   #Data Model: environment called "e"
   e <- new.env()
@@ -2980,7 +2969,7 @@ Fisher_exact_fun<-function(){
 
 # chisq_fun
 chisq_fun<-function(){
-  #dfs.fun<-function()c(unlist(lapply(ls(envir = .GlobalEnv), function(dfs) if (class(get(dfs))[1] == "data.frame") c(unlist(dfs)))),"Load User File")
+  
   
   #Data Model: environment called "e"
   e <- new.env()
@@ -3146,8 +3135,8 @@ chisq_fun<-function(){
 
 # oneway_fun
 oneway_fun<-function(){
-  ##require(tcltk2,quietly = TRUE)
-  #dfs.fun<-function()c(unlist(lapply(ls(envir = .GlobalEnv), function(dfs) if (class(get(dfs))[1] == "data.frame") c(unlist(dfs)))),"Load User File")
+  
+  
   
   #Data Model: environment called "e"
   e <- new.env()
@@ -3279,8 +3268,8 @@ oneway_fun<-function(){
 
 # fact_fun
 fact_fun<-function(){
-  ##require(tcltk2,quietly = TRUE)
-  #dfs.fun<-function()c(unlist(lapply(ls(envir = .GlobalEnv), function(dfs) if (class(get(dfs))[1] == "data.frame") c(unlist(dfs)))),"Load User File")
+  
+  
   
   #Data Model: environment called "e"
   e <- new.env()
@@ -3429,10 +3418,6 @@ fact_fun<-function(){
 
 # simp_lmfun
 simp_lmfun<-function(){
-  ##require(tcltk2,quietly = TRUE)
-  ##require(ggplot2,quietly = TRUE)
-  #dfs.fun<-function()c(unlist(lapply(ls(envir = .GlobalEnv), function(dfs) if (class(get(dfs))[1] == "data.frame") c(unlist(dfs)))),"Load User File")
-  
   #Data Model: environment called "e"
   e <- new.env()
   e$dataname <- tclVar("Choose one"); 
@@ -3574,9 +3559,6 @@ simp_lmfun<-function(){
 
 # glmfun to be used for simple two-variable regression and two-way anova with interaction effects
 glmfun<-function(){
-  ##require(tcltk2,quietly = TRUE)
-  #dfs.fun<-function()c(unlist(lapply(ls(envir = .GlobalEnv), function(dfs) if (class(get(dfs))[1] == "data.frame") c(unlist(dfs)))),"Load User File")
-  
   #Data Model: environment called "e"
   e <- new.env()
   e$dataname <- tclVar("Choose one"); 
@@ -3727,9 +3709,6 @@ glmfun<-function(){
 
 # saveas_fun
 saveas_fun<-function(){
-  ##require(tcltk2,quietly = TRUE)
-  #dfs.fun<-function()c(unlist(lapply(ls(envir = .GlobalEnv), function(dfs) if (class(get(dfs))[1] == "data.frame") c(unlist(dfs)))))
-  
   #Data Model: environment called "e"
   e <- new.env()
   e$dataname <- tclVar("Choose dataframe"); 
@@ -3752,7 +3731,7 @@ saveas_fun<-function(){
     switch(tclvalue(e$format),
            csv =  write.csv(x = e$dataframe, file = paste(e$savename,"csv",sep="")),
            txt =  write.table(x = e$dataframe, file = paste(e$savename,"txt",sep=""), sep="\t"),
-           xlsx = xlsx::write.xlsx(x = e$dataframe, file = paste(e$savename,"xlsx",sep="")),
+           #xlsx = xlsx::write.xlsx(x = e$dataframe, file = paste(e$savename,"xlsx",sep="")),
            spss = suppressWarnings(foreign::write.foreign(df = e$dataframe, paste(e$savename,"sps",sep=""), paste(e$savename,"sps",sep=""), package="SPSS")) ,
            stata = suppressWarnings(foreign::write.dta(dataframe = e$dataframe, paste(e$savename,"dta",sep=""))) 
     )
@@ -3813,7 +3792,7 @@ saveas_fun<-function(){
   #Data Type Radiobuttons
   put_label(label_frame, "Save as:",4,0,sticky="e")
   rb_frame2 <- ttkframe(label_frame)
-  sapply(c("csv","txt","xlsx","spss","stata"), function(i) {
+  sapply(c("csv","txt","spss","stata"), function(i) {
     radio_button <- tk2radiobutton(rb_frame2, variable = e$format,text = i, value = i)
     tkpack(radio_button, side = "left")
   })
@@ -3839,10 +3818,7 @@ saveas_fun<-function(){
 
 # sort_fun
 sort_fun<-function(){
-  ##require(tcltk2,quietly = TRUE)
-  #dfs.fun<-function()c(unlist(lapply(ls(envir = .GlobalEnv), function(dfs) if (class(get(dfs))[1] == "data.frame") c(unlist(dfs)))))
-  
-  #Data Model: environment called "e"
+#Data Model: environment called "e"
   e <- new.env()
   e$dataname <- tclVar("Choose one"); 
   e$dataframe <- tclVar("NULL"); 
@@ -3991,10 +3967,7 @@ sort_fun<-function(){
 
 # hist_fun
 hist_fun<-function(){
-  ##require(tcltk2,quietly = TRUE)
-  #dfs.fun<-function()c(unlist(lapply(ls(envir = .GlobalEnv), function(dfs) if (class(get(dfs))[1] == "data.frame") c(unlist(dfs)))),"Load User File")
-  
-  #Data Model: environment called "e"
+#Data Model: environment called "e"
   e <- new.env()
   e$dataname <- tclVar("Choose one"); 
   e$dataframe <- tclVar("NULL"); 
@@ -4094,10 +4067,7 @@ hist_fun<-function(){
 
 # simp_box_fun
 simp_box_fun<-function(){
-  ##require(tcltk2,quietly = TRUE)
-  #dfs.fun<-function()c(unlist(lapply(ls(envir = .GlobalEnv), function(dfs) if (class(get(dfs))[1] == "data.frame") c(unlist(dfs)))),"Load User File")
-  
-  #Data Model: environment called "e"
+#Data Model: environment called "e"
   e <- new.env()
   e$dataname <- tclVar("Choose one"); 
   e$dataframe <- tclVar("NULL"); 
@@ -4192,10 +4162,7 @@ simp_box_fun<-function(){
 
 # bivplot_fun
 bivplot_fun<-function(){
-  ##require(tcltk2,quietly = TRUE)
-  #dfs.fun<-function()c(unlist(lapply(ls(envir = .GlobalEnv), function(dfs) if (class(get(dfs))[1] == "data.frame") c(unlist(dfs)))),"Load User File")
-  
-  #Data Model: environment called "e"
+#Data Model: environment called "e"
   e <- new.env()
   e$dataname <- tclVar("Choose one"); 
   e$dataframe <- tclVar("NULL"); 
@@ -4304,9 +4271,7 @@ bivplot_fun<-function(){
 
 # divind_fun
 divind_fun<-function(){
-  #dfs.fun<-function()c(unlist(lapply(ls(envir = .GlobalEnv), function(dfs) if (class(get(dfs))[1] == "data.frame") c(unlist(dfs)))),"Load User File")
-  
-  #Data Model: environment called "e"
+#Data Model: environment called "e"
   e <- new.env()
   e$dataname <- tclVar("Choose one"); 
   e$dataframe <- tclVar("NULL"); 
@@ -4430,8 +4395,8 @@ divind_fun<-function(){
 
 # transf_fun
 trans_fun<-function(){
-  ##require(tcltk2,quietly = TRUE)
-  #dfs.fun<-function()c(unlist(lapply(ls(envir = .GlobalEnv), function(dfs) if (class(get(dfs))[1] == "data.frame") c(unlist(dfs)))),"Load User File")
+  
+  
   
   #Data Model: environment called "e"
   e <- new.env()
@@ -4549,10 +4514,6 @@ trans_fun<-function(){
 
 # multi_histfun
 multi_histfun<-function(){
-  ##require(tcltk2,quietly = TRUE)
-  ##require(ggplot2,quietly = TRUE)
-  #dfs.fun<-function()c(unlist(lapply(ls(envir = .GlobalEnv), function(dfs) if (class(get(dfs))[1] == "data.frame") c(unlist(dfs)))),"Load User File")
-  
   #Data Model: environment called "e"
   e <- new.env()
   e$dataname <- tclVar("Choose one"); 
@@ -4680,10 +4641,6 @@ multi_histfun<-function(){
 
 # multi_boxplotfun
 multi_boxplotfun<-function(){
-  ##require(tcltk2,quietly = TRUE)
-  ##require(ggplot2,quietly = TRUE)
-  #dfs.fun<-function()c(unlist(lapply(ls(envir = .GlobalEnv), function(dfs) if (class(get(dfs))[1] == "data.frame") c(unlist(dfs)))),"Load User File")
-  
   #Data Model: environment called "e"
   e <- new.env()
   e$dataname <- tclVar("Choose one"); 
@@ -4812,9 +4769,6 @@ multi_boxplotfun<-function(){
 
 # parMANOVA Function
 parMANOVA_fun<-function(){ #EOC + JBR
-  ##require(tcltk2, quietly = TRUE)
-  #dfs.fun<-function()c(unlist(lapply(ls(envir = .GlobalEnv), function(dfs) if (class(get(dfs))[1] == "data.frame") c(unlist(dfs)))),"Load User File")
-  
   #Data Model: enviroment called "e"
   e<-new.env()
   e$dataname <- tclVar("Choose Dataframe");
@@ -4825,7 +4779,6 @@ parMANOVA_fun<-function(){ #EOC + JBR
   
   #Ok Function
   Okfun<-function(){
-    
     #Using Selected Values
     Value_Y <- input1[as.numeric(tkcurselection(list1)) + 1]
     Value_X <- input1[as.numeric(tkcurselection(list2)) + 1]
@@ -4911,7 +4864,7 @@ parMANOVA_fun<-function(){ #EOC + JBR
   list1 <- tk2listbox(label_frame, height = 4, selectmode = "extended")
   put_label(label_frame, "Response Matrix:",row=4,column=0,sticky="n")
   tkgrid(list1, padx = 10, pady = c(5, 10),row = 5, column = 0)
-  input1 <- colnames(sort(e$dataframe))
+  input1 <- sort(colnames(e$dataframe))
   for (inputs in input1){
     tkinsert(list1, "end", inputs)
   }
@@ -4921,7 +4874,7 @@ parMANOVA_fun<-function(){ #EOC + JBR
   list2<-tk2listbox(label_frame, height = 4, selectmode = "extended")
   put_label(label_frame, "Predictor Matrix:", row = 4, column = 1, sticky = "n")
   tkgrid(list2, padx = 10, pady = c(5, 10), row = 5, column = 1)
-  input2<-colnames(e$dataframe)
+  input2<-sort(colnames(e$dataframe))
   for(inputs in input2){
     tkinsert(list2, "end", inputs)
   }
@@ -4982,10 +4935,6 @@ parMANOVA_fun<-function(){ #EOC + JBR
 
 # NPMANOVA Function 
 NPMANOVA_fun<-function(){ #EOC + JBR
-  ##require(tcltk2, quietly = TRUE)
-  ##require(vegan, quietly = TRUE)
-  #dfs.fun<-function()c(unlist(lapply(ls(envir = .GlobalEnv), function(dfs) if (class(get(dfs))[1] == "data.frame") c(unlist(dfs)))),"Load User File")
-  
   #Data Model: enviroment called "e"
   e<-new.env()
   e$dataname <- tclVar("Choose Dataframe");
@@ -5087,7 +5036,7 @@ NPMANOVA_fun<-function(){ #EOC + JBR
   list1 <- tk2listbox(label_frame, height = 4, selectmode = "extended")
   put_label(label_frame, "Response Matrix:",row=4,column=0,sticky="n")
   tkgrid(list1, padx = 10, pady = c(5, 10),row = 5, column = 0)
-  input1 <- colnames(sort(e$dataframe))
+  input1 <- sort(colnames(e$dataframe))
   for (inputs in input1){
     tkinsert(list1, "end", inputs)
   }
@@ -5097,7 +5046,7 @@ NPMANOVA_fun<-function(){ #EOC + JBR
   list2<-tk2listbox(label_frame, height = 4, selectmode = "extended")
   put_label(label_frame, "Predictor Matrix:", row = 4, column = 1, sticky = "n")
   tkgrid(list2, padx = 10, pady = c(5, 10), row = 5, column = 1)
-  input2<-colnames(e$dataframe)
+  input2<-sort(colnames(e$dataframe))
   for(inputs in input2){
     tkinsert(list2, "end", inputs)
   }
@@ -5158,9 +5107,9 @@ NPMANOVA_fun<-function(){ #EOC + JBR
 
 # NP Hotelling Function 
 NPHotellingt_fun<-function(){ #EOC + JBR
-  ##require(tcltk2, quietly = TRUE)
-  ##require(vegan, quietly = TRUE)
-  #dfs.fun<-function()c(unlist(lapply(ls(envir = .GlobalEnv), function(dfs) if (class(get(dfs))[1] == "data.frame") c(unlist(dfs)))),"Load User File")
+  
+  
+  
   
   #Data Model: enviroment called "e"
   e<-new.env()
@@ -5263,7 +5212,7 @@ NPHotellingt_fun<-function(){ #EOC + JBR
   list1 <- tk2listbox(label_frame, height = 4, selectmode = "extended")
   put_label(label_frame, "Response Matrix:",row=4,column=0,sticky="n")
   tkgrid(list1, padx = 10, pady = c(5, 10),row = 5, column = 0)
-  input1 <- colnames(sort(e$dataframe))
+  input1 <- sort(colnames(e$dataframe))
   for (inputs in input1){
     tkinsert(list1, "end", inputs)
   }
@@ -5273,7 +5222,7 @@ NPHotellingt_fun<-function(){ #EOC + JBR
   list2<-tk2listbox(label_frame, height = 4, selectmode = "extended")
   put_label(label_frame, "Predictor Matrix:", row = 4, column = 1, sticky = "n")
   tkgrid(list2, padx = 10, pady = c(5, 10), row = 5, column = 1)
-  input2<-colnames(e$dataframe)
+  input2<-sort(colnames(e$dataframe))
   for(inputs in input2){
     tkinsert(list2, "end", inputs)
   }
@@ -5334,9 +5283,9 @@ NPHotellingt_fun<-function(){ #EOC + JBR
 
 # Distance Function
 dist_fun<-function(){ #EOC + JBR
-  ##require(tcltk2, quietly = TRUE)
-  ##require(vegan, quietly = TRUE)
-  #dfs.fun<-function()c(unlist(lapply(ls(envir = .GlobalEnv), function(dfs) if (class(get(dfs))[1] == "data.frame") c(unlist(dfs)))),"Load User File")
+  
+  
+  
   
   #Data Model: enviroment called "e"
   e<-new.env()
@@ -5377,7 +5326,6 @@ dist_fun<-function(){ #EOC + JBR
     envir <- as.environment(pos)
     D_Matrix_Results<-NULL
     assign("D_Matrix_Results", out, envir = envir)
-    print(out)
     tkdestroy(window)
   }
   #Begin GUI Setup
@@ -5429,7 +5377,7 @@ dist_fun<-function(){ #EOC + JBR
   list1 <- tk2listbox(label_frame, height = 5, selectmode = "extended")
   put_label(label_frame, "Choose Data:",row=3,column=0,sticky="w")
   tkgrid(list1, padx = 10, pady = c(5, 10),row = 3, column = 1)
-  input1 <- colnames(sort(e$dataframe))
+  input1 <- sort(colnames(e$dataframe))
   for (inputs in input1){
     tkinsert(list1, "end", inputs)
   }
@@ -5597,8 +5545,8 @@ cluster_fun<-function(){
 
 # prcomp Function
 prcomp_fun<-function(){
-  ##require(tcltk2, quietly = TRUE)
-  #dfs.fun<-function()c(unlist(lapply(ls(envir = .GlobalEnv), function(dfs) if (class(get(dfs))[1] == "data.frame") c(unlist(dfs)))),"Load User File")
+  
+  
   
   #Data Model: enviroment called "e"
   e<-new.env()
@@ -5676,7 +5624,7 @@ prcomp_fun<-function(){
   list1 <- tk2listbox(label_frame, height = 4, selectmode = "extended")
   put_label(label_frame, "Choose Data:",row=3,column=0,sticky="w")
   tkgrid(list1, padx = 10, pady = c(5, 10),row = 3, column = 1)
-  input1 <- colnames(sort(e$dataframe))
+  input1 <- sort(colnames(e$dataframe))
   for (inputs in input1){
     tkinsert(list1, "end", inputs)
   }
@@ -5707,7 +5655,7 @@ prcomp_fun<-function(){
 
 #Correspondence Analysis Function
 correspondence_fun<-function(){
-  #dfs.fun<-function()c(unlist(lapply(ls(envir = .GlobalEnv), function(dfs) if (class(get(dfs))[1] == "data.frame") c(unlist(dfs)))),"Load User File")
+  
   
   #Data Model: enviroment called "e"
   e<-new.env()
@@ -5799,7 +5747,7 @@ correspondence_fun<-function(){
   list1 <- tk2listbox(label_frame, height = 4, selectmode = "extended")
   put_label(label_frame, "Choose Data:",row=3,column=0,sticky="w")
   tkgrid(list1, padx = 10, pady = c(5, 10),row = 3, column = 1)
-  input1 <- colnames(sort(e$dataframe))
+  input1 <- sort(colnames(e$dataframe))
   for (inputs in input1){
     tkinsert(list1, "end", inputs)
   }
@@ -5809,7 +5757,7 @@ correspondence_fun<-function(){
   list2 <- tk2listbox(label_frame, height = 4, selectmode = "extended")
   put_label(label_frame, "Choose Label:",row=5,column=0,sticky="w")
   tkgrid(list2, padx = 10, pady = c(5, 10),row = 5, column = 1)
-  input2 <- colnames(sort(e$dataframe))
+  input2 <- sort(colnames(e$dataframe))
   for (inputs in input2){
     tkinsert(list2, "end", inputs)
   }
@@ -5840,9 +5788,9 @@ correspondence_fun<-function(){
 
 # PCoA Function
 PCoA_fun<-function(){
-  ##require(tcltk2, quietly = TRUE)
-  ##require(vegan, quietly = TRUE)
-  #dfs.fun<-function()c(unlist(lapply(ls(envir = .GlobalEnv), function(dfs) if (class(get(dfs))[1] == "data.frame") c(unlist(dfs)))),"Load User File")
+  
+  
+  
   
   #Data Model: enviroment called "e"
   e<-new.env()
@@ -5937,7 +5885,7 @@ PCoA_fun<-function(){
   list1 <- tk2listbox(label_frame, height = 5, selectmode = "extended")
   put_label(label_frame, "Choose Data:",row=3,column=0,sticky="w")
   tkgrid(list1, padx = 10, pady = c(5, 10),row = 3, column = 1)
-  input1 <- colnames(sort(e$dataframe))
+  input1 <- sort(colnames(e$dataframe))
   for (inputs in input1){
     tkinsert(list1, "end", inputs)
   }
@@ -5963,11 +5911,6 @@ PCoA_fun<-function(){
 
 # NMDS Function
 NMDS_fun<-function(){
-  ##require(tcltk2, quietly = TRUE)
-  ##require(vegan, quietly = TRUE)
-  ###require(MASS, quietly = TRUE)
-  #dfs.fun<-function()c(unlist(lapply(ls(envir = .GlobalEnv), function(dfs) if (class(get(dfs))[1] == "data.frame") c(unlist(dfs)))),"Load User File")
-  
   #Data Model: enviroment called "e"
   e<-new.env()
   e$dataname <- tclVar("Choose one"); 
@@ -6083,7 +6026,7 @@ NMDS_fun<-function(){
   list1 <- tk2listbox(label_frame, height = 4, selectmode = "extended")
   put_label(label_frame, "Choose Data:",row=3,column=0,sticky="w")
   tkgrid(list1, padx = 10, pady = c(5, 10),row = 3, column = 1)
-  input1 <- colnames(sort(e$dataframe))
+  input1 <- sort(colnames(e$dataframe))
   for (inputs in input1){
     tkinsert(list1, "end", inputs)
   }
@@ -6124,9 +6067,9 @@ NMDS_fun<-function(){
 
 # 2-way Mantel Function
 mantel2way_fun<-function(){
-  ##require(tcltk2, quietly = TRUE)
-  ##require(vegan, quietly = TRUE)
-  #dfs.fun<-function()c(unlist(lapply(ls(envir = .GlobalEnv), function(dfs) if (class(get(dfs))[1] == "data.frame") c(unlist(dfs)))),"Load User File")
+  
+  
+  
   
   #Data Model: enviroment called "e"
   e<-new.env()
@@ -6258,7 +6201,7 @@ mantel2way_fun<-function(){
   list1 <- tk2listbox(label_frame, height = 4, selectmode = "extended")
   put_label(label_frame, "First Matrix:",row=4,column=0,sticky="n")
   tkgrid(list1, padx = 10, pady = c(5, 10),row = 5, column = 0)
-  input1 <- colnames(sort(e$dataframe))
+  input1 <- sort(colnames(e$dataframe))
   for (inputs in input1){
     tkinsert(list1, "end", inputs)
   }
@@ -6330,9 +6273,9 @@ mantel2way_fun<-function(){
 
 # 3 Way Mantel Function
 mantel3_fun<-function(){
-  ##require(tcltk2, quietly = TRUE)
-  ##require(vegan, quietly = TRUE)
-  #dfs.fun<-function()c(unlist(lapply(ls(envir = .GlobalEnv), function(dfs) if (class(get(dfs))[1] == "data.frame") c(unlist(dfs)))),"Load User File")
+  
+  
+  
   
   #Data Model: enviroment called "e"
   e<-new.env()
@@ -6509,7 +6452,7 @@ mantel3_fun<-function(){
   list1 <- tk2listbox(label_frame, height = 4, selectmode = "extended")
   put_label(label_frame, "First Matrix:",row=4,column=0,sticky="n")
   tkgrid(list1, padx = 10, pady = c(5, 10),row = 5, column = 0)
-  input1 <- colnames(sort(e$dataframe))
+  input1 <- sort(colnames(e$dataframe))
   for (inputs in input1){
     tkinsert(list1, "end", inputs)
   }
@@ -6600,7 +6543,6 @@ mantel3_fun<-function(){
 
 # Ripleys K Function
 ripleys_K_fun<-function() {
-  # dfs.fun<-function()c(unlist(lapply(ls(envir = .GlobalEnv), function(dfs) if (class(get(dfs))[1] == "data.frame") c(unlist(dfs)))),"Load User File", "Load Shape File")
   sppdfs.fun<-function()c(unlist(lapply(c(ls(envir = .GlobalEnv),ls("package:zooaRchGUI")), function(SpatialPointsDataFrame) if(class(get(SpatialPointsDataFrame))[1] == "SpatialPointsDataFrame")c(unlist(SpatialPointsDataFrame)))), "Load User File", "Load Shape File")
   list.fun<-function()c(unlist(lapply(c(ls(envir = .GlobalEnv),ls("package:zooaRchGUI")), function(list) if (class(get(list))[1] == "list") c(unlist(list)))), "Load User File", "Load Shape File")
   
@@ -6926,9 +6868,6 @@ ripleys_K_fun<-function() {
 
 # Moran's I/Geary C Function
 moran_geary_fun<-function(){
-  ##require(pgirmess, quietly = TRUE)
-  ##require(tcltk2, quietly = TRUE)
-  ##require(raster, quietly = TRUE)
   spdfs.fun<-function()c(unlist(lapply(c(ls(envir = .GlobalEnv),ls("package:zooaRchGUI")), function(SpatialPolygonsDataFrame) if(class(get(SpatialPolygonsDataFrame))[1] == "SpatialPolygonsDataFrame")c(unlist(SpatialPolygonsDataFrame)))), "Load User File", "Load Shape File")
   num.fun<-function()c(unlist(lapply(c(ls(envir = .GlobalEnv),ls("package:zooaRchGUI")), function(numeric) if(class(get(numeric))[1] == "numeric")c(unlist(numeric)))), "Load User File", "Load Shape File")
   
@@ -7059,9 +6998,6 @@ moran_geary_fun<-function(){
 
 # Readland Function
 readland_fun<-function(){
-  ##require(geomorph, quietly = TRUE)
-  ##require(tcltk2, quietly = TRUE)
-  
   #Data Model: enviroment called e
   e<-new.env()
   e$datatype<-tclVar(".nts")
@@ -7137,8 +7073,8 @@ readland_fun<-function(){
 
 # Multivariate Vector-fitting Function
 multivarfit_fun<-function(){
-  ##require(tcltk2, quietly = TRUE)
-  #dfs.fun<-function()c(unlist(lapply(ls(envir = .GlobalEnv), function(dfs) if (class(get(dfs))[1] == "data.frame") c(unlist(dfs)))),"Load User File")
+  
+  
   matrix.fun<-function()c(unlist(lapply(c(ls(envir = .GlobalEnv),ls("package:zooaRchGUI")), function(matrix) if(class(get(matrix))[1] == "matrix")c(unlist(matrix)))), "Load User File")
   
   #Data Model: enviroment called "e"
@@ -7268,8 +7204,6 @@ multivarfit_fun<-function(){
 
 # Gpagen Function
 gpagen_fun<-function(){
-  ##require(geomorph, quietly = TRUE)
-  ##require(tcltk2, quietly = TRUE)
   array.fun<-function()c(unlist(lapply(c(ls(envir = .GlobalEnv),ls("package:zooaRchGUI")), function(array) if(class(get(array))[1] == "array")c(unlist(array)))), "Load User File")
   matrix.fun<-function()c(unlist(lapply(c(ls(envir = .GlobalEnv),ls("package:zooaRchGUI")), function(matrix) if(class(get(matrix))[1] == "matrix")c(unlist(matrix)))), "None","Load User File")
   
@@ -7413,7 +7347,7 @@ gpagen_fun<-function(){
 
 # k-means Single
 kmeans_single_fun<-function(){
-  ##require(tcltk2, quietly = TRUE)
+  
   matrix.fun<-function()c(unlist(lapply(c(ls(envir = .GlobalEnv),ls("package:zooaRchGUI")), function(matrix) if(class(get(matrix))[1] == "matrix")c(unlist(matrix)))),"Load User File")
   df.fun<-function()c(unlist(lapply(c(ls(envir = .GlobalEnv),ls("package:zooaRchGUI")), function(matrix) if(class(get(matrix))[1] == "data.frame")c(unlist(matrix)))))
   #Data Model: enviroment called e
@@ -7428,7 +7362,7 @@ kmeans_single_fun<-function(){
     #Numeric Error Checking
     #Using Selected Values
     Value_First <- input1[as.numeric(tkcurselection(list1)) + 1]
-    
+    e$datamatrix<-e$datamatrix[,Value_First]
     #Error Checking
     if(sum(sapply(e$datamatrix[,Value_First], is.numeric))==FALSE) { 
       print("First matrix must not contain characters!")
@@ -7445,8 +7379,8 @@ kmeans_single_fun<-function(){
     #K-means
     pc<-prcomp(e$datamatrix)$x
     kclusters<-kmeans(pc,as.numeric(tclvalue(e$clusternum)))
-   
-     ## Plot
+    
+    ## Plot
     if(tclvalue(e$plot) == 1){
       plot(prcomp(e$datamatrix)$x[,1:2],col=kclusters$cluster,pch=19)
       points(kclusters$centers, col = 1:as.numeric(tclvalue(e$clusternum)), pch = 8, cex=2)
@@ -7539,7 +7473,7 @@ kmeans_single_fun<-function(){
 
 # k-means Multi
 kmeans_multi_fun<-function(){
-  ##require(tcltk2, quietly = TRUE)
+  
   matrix.fun<-function()c(unlist(lapply(c(ls(envir = .GlobalEnv),ls("package:zooaRchGUI")), function(matrix) if(class(get(matrix))[1] == "matrix")c(unlist(matrix)))),"Load User File")
   df.fun<-function()c(unlist(lapply(c(ls(envir = .GlobalEnv),ls("package:zooaRchGUI")), function(matrix) if(class(get(matrix))[1] == "data.frame")c(unlist(matrix)))))
   
@@ -7558,9 +7492,9 @@ kmeans_multi_fun<-function(){
     #Numeric Error Checking
     #Using Selected Values
     Value_First <- input1[as.numeric(tkcurselection(list1)) + 1]
-    
+    e$datamatrix<-e$datamatrix[,Value_First]
     #Error Checking
-    if(sum(sapply(e$datamatrix[,Value_First], is.numeric))==FALSE) { 
+    if(sum(sapply(e$datamatrix, is.numeric))==FALSE) { 
       print("First matrix must not contain characters!")
       tkdestroy(window)
       kmeans_single_fun
@@ -7725,7 +7659,7 @@ kmeans_multi_fun<-function(){
 # Bayesian functions # all bayesian code from Baath 2016, Bayesian first aid unpublished package https://github.com/rasmusab/bayesian_first_aid
 # Bayesian onesam_tfun # all bayesian code from Baath 2016, Bayesian first aid unpublished package https://github.com/rasmusab/bayesian_first_aid
 Bayes_onesam_tfun<-function(){
-  #dfs.fun<-function()c(unlist(lapply(ls(envir = .GlobalEnv), function(dfs) if (class(get(dfs))[1] == "data.frame") c(unlist(dfs)))),"Load User File")
+  
   
   #Data Model: environment called "e"
   e <- new.env()
@@ -7853,7 +7787,7 @@ Bayes_onesam_tfun<-function(){
 
 # Bayes_2tfun
 Bayes_2tfun<-function(){
-  #dfs.fun<-function()c(unlist(lapply(ls(envir = .GlobalEnv), function(dfs) if (class(get(dfs))[1] == "data.frame") c(unlist(dfs)))),"Load User File")
+  
   
   #Data Model: environment called "e"
   e <- new.env()
